@@ -1,0 +1,68 @@
+=== REPORT SOMMARIO ===
+
+Test eseguiti: Wed Dec  3 15:38:32 CET 2025
+
+---
+File: 01-consumer-small-messages.txt
+start.time, end.time, data.consumed.in.MB, MB.sec, data.consumed.in.nMsg, nMsg.sec, rebalance.time.ms, fetch.time.ms, fetch.MB.sec, fetch.nMsg.sec
+WARNING: Exiting before consuming the expected number of messages: timeout (10000 ms) exceeded. You can use the --timeout option to increase the timeout.
+2025-12-03 14:35:02:669, 2025-12-03 14:35:12:699, 0.0000, 0.0000, 0, 0.0000, 0, 10030, 0.0000, 0.0000
+
+---
+File: 01-producer-small-messages.txt
+118245 records sent, 23615.9 records/sec (2.25 MB/sec), 1432.1 ms avg latency, 2392.0 ms max latency.
+
+---
+File: 02-consumer-medium-messages.txt
+start.time, end.time, data.consumed.in.MB, MB.sec, data.consumed.in.nMsg, nMsg.sec, rebalance.time.ms, fetch.time.ms, fetch.MB.sec, fetch.nMsg.sec
+2025-12-03 14:35:52:212, 2025-12-03 14:36:01:315, 488.2813, 53.6396, 500000, 54926.9472, 3550, 5553, 87.9311, 90041.4191
+
+---
+File: 02-producer-medium-messages.txt
+68805 records sent, 13761.0 records/sec (13.44 MB/sec), 2681.8 ms avg latency, 3432.0 ms max latency.
+140835 records sent, 28167.0 records/sec (27.51 MB/sec), 1165.8 ms avg latency, 1738.0 ms max latency.
+500000 records sent, 16814.1 records/sec (16.42 MB/sec), 1627.40 ms avg latency, 5925.00 ms max latency, 923 ms 50th, 4607 ms 95th, 5548 ms 99th, 5881 ms 99.9th.
+
+---
+File: 03-consumer-large-messages.txt
+start.time, end.time, data.consumed.in.MB, MB.sec, data.consumed.in.nMsg, nMsg.sec, rebalance.time.ms, fetch.time.ms, fetch.MB.sec, fetch.nMsg.sec
+2025-12-03 14:36:54:589, 2025-12-03 14:37:05:971, 976.5625, 85.7988, 100000, 8785.8021, 3755, 7627, 128.0402, 13111.3151
+
+---
+File: 03-producer-large-messages.txt
+18531 records sent, 3706.2 records/sec (36.19 MB/sec), 551.9 ms avg latency, 762.0 ms max latency.
+17768 records sent, 3553.6 records/sec (34.70 MB/sec), 583.7 ms avg latency, 891.0 ms max latency.
+100000 records sent, 2378.3 records/sec (23.23 MB/sec), 822.42 ms avg latency, 2948.00 ms max latency, 615 ms 50th, 2122 ms 95th, 2803 ms 99th, 2922 ms 99.9th.
+
+---
+File: 04-consumer-latency-test.txt
+start.time, end.time, data.consumed.in.MB, MB.sec, data.consumed.in.nMsg, nMsg.sec, rebalance.time.ms, fetch.time.ms, fetch.MB.sec, fetch.nMsg.sec
+2025-12-03 14:37:26:429, 2025-12-03 14:37:31:020, 97.6563, 21.2712, 100000, 21781.7469, 3522, 1069, 91.3529, 93545.3695
+
+---
+File: 04-producer-latency-test.txt
+44281 records sent, 8856.2 records/sec (8.65 MB/sec), 1330.5 ms avg latency, 1915.0 ms max latency.
+55651 records sent, 11108.0 records/sec (10.85 MB/sec), 190.3 ms avg latency, 596.0 ms max latency.
+100000 records sent, 9870.7 records/sec (9.64 MB/sec), 695.10 ms avg latency, 1915.00 ms max latency, 443 ms 50th, 1810 ms 95th, 1887 ms 99th, 1908 ms 99.9th.
+
+---
+File: 05-consumer-burst-test.txt
+start.time, end.time, data.consumed.in.MB, MB.sec, data.consumed.in.nMsg, nMsg.sec, rebalance.time.ms, fetch.time.ms, fetch.MB.sec, fetch.nMsg.sec
+2025-12-03 14:37:48:453, 2025-12-03 14:37:54:144, 195.3125, 34.3195, 200000, 35143.2086, 3649, 2042, 95.6476, 97943.1929
+
+---
+File: 05-producer-burst-test.txt
+116344 records sent, 23268.8 records/sec (22.72 MB/sec), 942.1 ms avg latency, 1292.0 ms max latency.
+200000 records sent, 27333.6 records/sec (26.69 MB/sec), 936.04 ms avg latency, 1292.00 ms max latency, 955 ms 50th, 1210 ms 95th, 1275 ms 99th, 1289 ms 99.9th.
+
+---
+File: 06-consumer-compression-test.txt
+start.time, end.time, data.consumed.in.MB, MB.sec, data.consumed.in.nMsg, nMsg.sec, rebalance.time.ms, fetch.time.ms, fetch.MB.sec, fetch.nMsg.sec
+2025-12-03 14:38:23:686, 2025-12-03 14:38:31:747, 195.3125, 24.2293, 200000, 24810.8175, 3761, 4300, 45.4215, 46511.6279
+
+---
+File: 06-producer-compression-test.txt
+41757 records sent, 8351.4 records/sec (8.16 MB/sec), 1085.2 ms avg latency, 1954.0 ms max latency.
+60236 records sent, 12044.8 records/sec (11.76 MB/sec), 1263.5 ms avg latency, 2185.0 ms max latency.
+200000 records sent, 10550.7 records/sec (10.30 MB/sec), 1035.16 ms avg latency, 2185.00 ms max latency, 1038 ms 50th, 1839 ms 95th, 2141 ms 99th, 2178 ms 99.9th.
+

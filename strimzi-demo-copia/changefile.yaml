@@ -1,0 +1,4 @@
+# 
+variables:
+  projectType: infrastructure
+  builderType: none

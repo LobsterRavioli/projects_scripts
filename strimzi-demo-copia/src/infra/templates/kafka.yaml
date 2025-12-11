@@ -1,0 +1,80 @@
+{{- if .Values.kafka.enabled }}
+---
+apiVersion: kafka.strimzi.io/v1
+kind: KafkaNodePool
+metadata:
+  name: {{ .Values.kafka.cluster.name }}-controller
+  namespace: {{ .Values.kafka.namespace }}
+  labels:
+    strimzi.io/cluster: {{ .Values.kafka.cluster.name }}
+spec:
+  replicas: {{ .Values.kafka.controller.replicas }}
+  roles:
+    - controller
+  storage:
+    type: jbod
+    volumes:
+      - id: 0
+        type: persistent-claim
+        size: {{ .Values.kafka.controller.storage.size }}
+        kraftMetadata: shared
+        deleteClaim: false
+  resources:
+    {{- toYaml .Values.kafka.controller.resources | nindent 4 }}
+---
+apiVersion: kafka.strimzi.io/v1
+kind: KafkaNodePool
+metadata:
+  name: {{ .Values.kafka.cluster.name }}-broker
+  namespace: {{ .Values.kafka.namespace }}
+  labels:
+    strimzi.io/cluster: {{ .Values.kafka.cluster.name }}
+spec:
+  replicas: {{ .Values.kafka.broker.replicas }}
+  roles:
+    - broker
+  storage:
+    type: jbod
+    volumes:
+      - id: 0
+        type: persistent-claim
+        size: {{ .Values.kafka.broker.storage.size }}
+        kraftMetadata: shared
+        deleteClaim: false
+  resources:
+    {{- toYaml .Values.kafka.broker.resources | nindent 4 }}
+---
+apiVersion: kafka.strimzi.io/v1
+kind: Kafka
+metadata:
+  name: {{ .Values.kafka.cluster.name }}
+  namespace: {{ .Values.kafka.namespace }}
+spec:
+  kafka:
+    version: {{ .Values.kafka.version }}
+    metadataVersion: {{ .Values.kafka.metadataVersion }}
+    listeners:
+      {{- toYaml .Values.kafka.listeners | nindent 6 }}
+    config:
+      {{- toYaml .Values.kafka.config | nindent 6 }}
+  entityOperator:
+    topicOperator:
+      resources:
+        {{- toYaml .Values.kafka.entityOperator.topicOperator.resources | nindent 8 }}
+    userOperator:
+      resources:
+        {{- toYaml .Values.kafka.entityOperator.userOperator.resources | nindent 8 }}
+---
+{{- if .Values.kafkaBridge.enabled }}
+apiVersion: kafka.strimzi.io/v1
+kind: KafkaBridge
+metadata:
+  name: {{ .Values.kafkaBridge.name }}
+  namespace: {{ .Values.kafka.namespace }}
+spec:
+  replicas: {{ .Values.kafkaBridge.replicas }}
+  bootstrapServers: {{ .Values.kafka.cluster.name }}-kafka-bootstrap:9092
+  http:
+    port: {{ .Values.kafkaBridge.http.port }}
+{{- end }}
+{{- end }}

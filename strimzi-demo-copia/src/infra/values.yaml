@@ -1,0 +1,92 @@
+# Default values for strimzi-stack.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+# Namespaces configuration
+namespaces:
+  operator: strimzi-system
+  components: strimzi-components
+
+# Strimzi Kafka Operator configuration
+strimzi-kafka-operator:
+  watchNamespaces:
+    - strimzi-components
+
+# Kafka cluster configuration
+kafka:
+  enabled: true
+  namespace: strimzi-components
+  cluster:
+    name: my-cluster
+  version: 4.1.1
+  metadataVersion: 4.1-IV1
+  
+  controller:
+    replicas: 1
+    storage:
+      size: 5Gi
+    resources:
+      requests:
+        memory: 256Mi
+        cpu: 200m
+      limits:
+        memory: 512Mi
+        cpu: 500m
+  
+  broker:
+    replicas: 1
+    storage:
+      size: 5Gi
+    resources:
+      requests:
+        memory: 512Mi
+        cpu: 250m
+      limits:
+        memory: 1Gi
+        cpu: 1000m
+  
+  listeners:
+    - name: plain
+      port: 9092
+      type: internal
+      tls: false
+    - name: tls
+      port: 9093
+      type: internal
+      tls: true
+  
+  config:
+      min.insync.replicas: 1
+      unclean.leader.election.enable: "true"
+      default.replication.factor: 2
+      offsets.topic.replication.factor: 2
+      transaction.state.log.replication.factor: 2
+      transaction.state.log.min.isr: 1
+      zookeeper.session.timeout.ms: 18000
+      replica.lag.time.max.ms: 10000
+  
+  entityOperator:
+    topicOperator:
+      resources:
+        requests:
+          memory: 128Mi
+          cpu: 100m
+        limits:
+          memory: 256Mi
+          cpu: 500m
+    userOperator:
+      resources:
+        requests:
+          memory: 128Mi
+          cpu: 100m
+        limits:
+          memory: 256Mi
+          cpu: 500m
+
+# Kafka Bridge configuration
+kafkaBridge:
+  enabled: true
+  name: my-bridge
+  replicas: 1
+  http:
+    port: 8080

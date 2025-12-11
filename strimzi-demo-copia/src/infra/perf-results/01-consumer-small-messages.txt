@@ -1,0 +1,3 @@
+start.time, end.time, data.consumed.in.MB, MB.sec, data.consumed.in.nMsg, nMsg.sec, rebalance.time.ms, fetch.time.ms, fetch.MB.sec, fetch.nMsg.sec
+WARNING: Exiting before consuming the expected number of messages: timeout (10000 ms) exceeded. You can use the --timeout option to increase the timeout.
+2025-12-03 14:35:02:669, 2025-12-03 14:35:12:699, 0.0000, 0.0000, 0, 0.0000, 0, 10030, 0.0000, 0.0000
